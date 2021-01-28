@@ -1,12 +1,23 @@
 <template>
-    <!-- <div>
-        <div v-for="stud in studentlist" :key="stud.id">
-            <h3>{{stud.count}}</h3>
-            <h3 v-for="s in stud.results" :key="s.id">
-                <small>{{s.get_fullname}}</small><br>
-                <small>{{s.date_register|formatDate}}</small>
-            </h3>
-        </div> -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="app">
 <div class="row">
     <div class="col-sm-4">
@@ -75,6 +86,9 @@
                 </td>
                 <td>{{stud.parent_contact}}</td>
                 <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
                 <button class="btn btn-outline-danger btn-sm mx-1" @click="deleteStudent(stud)"><i class="fas fa-trash-alt"></i></button>
                 </td>
             </tr>
