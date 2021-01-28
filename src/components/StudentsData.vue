@@ -1,23 +1,4 @@
 <template>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 <div id="app">
 <div class="row">
     <div class="col-sm-4">
@@ -86,11 +67,30 @@
                 </td>
                 <td>{{stud.parent_contact}}</td>
                 <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
+                <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalCenter" @click="detailsStudent(stud)">
+  Details
 </button>
                 <button class="btn btn-outline-danger btn-sm mx-1" @click="deleteStudent(stud)"><i class="fas fa-trash-alt"></i></button>
                 </td>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Student Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>{{ stud.get_fullname}}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </tr>
             </tbody>
         </table>
@@ -169,6 +169,19 @@ export default {
             });
             await this.getStudents();
             this.student = {};
+        },
+        async detailsStudent(student) {
+            await this.getStudents();
+            Axios.get(`http://franky88.pythonanywhere.com/students/${student.id}/`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${access_token}`
+                }
+            })
+            .then(response => {
+                console.warn(response);
+            });
+            await this.getStudents();
         },
         async deleteStudent(student) {
             await this.getStudents();
