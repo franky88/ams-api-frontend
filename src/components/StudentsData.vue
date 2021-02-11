@@ -38,12 +38,80 @@
             <label for="parentEmail">Parent Email Address</label>
             <input type="email" class="form-control" placeholder="Parent Email" v-model="student.parent_email">
             </div>
-            <button class="btn btn-outline-primary">Submit</button>
+            <!-- <input type="hidden" id="postId" name="user" v-model="student.user" value=""> -->
+            <button class="btn btn-outline-primary btn-sm">Submit</button>
+            <a class="btn text-sm-right" style="color: red;" @click="clearList">Clear</a>
         </form>
         </div>
     </div>
     </div>
     <div class="col-sm-8">
+      <!-- Modal for delete -->
+      <div class="modal fade" id="delete-student" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Student Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="" style="background-color: teal; width:100%; height:100%; border-radius: 5%;">
+
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <strong>{{ student.get_fullname }}</strong>
+                  <br>
+                  <small class="text-muted">Date Register: {{ student.date_register|formatDate }}</small>
+                  <hr>
+                  <button type="button" class="btn btn-outline-danger btn-sm" @click="deleteStudent(student)"><i class="fas fa-trash-alt"></i></button>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal for details -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Student Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="" style="background-color: teal; width:100%; height:100%; border-radius: 5%;">
+
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <strong>{{ student.get_fullname }}</strong>
+                  <br>
+                  <small class="text-muted">Date Register: {{ student.date_register|formatDate }}</small>
+                  <hr>
+                  <button type="button" class="btn btn-outline-danger btn-sm" @click="deleteStudent(student)"><i class="fas fa-trash-alt"></i></button>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="card">
         <div class="card-body">
         <h3 class="card-title">Student list</h3>
@@ -67,30 +135,11 @@
                 </td>
                 <td>{{stud.parent_contact}}</td>
                 <td>
-                <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalCenter" @click="detailsStudent(stud)">
+                <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalCenter" :key="stud.id" @click="$data.student = stud">
   Details
 </button>
-                <button class="btn btn-outline-danger btn-sm mx-1" @click="deleteStudent(stud)"><i class="fas fa-trash-alt"></i></button>
+                <!-- <button class="btn btn-outline-danger btn-sm mx-1" data-toggle="modal" data-target="#delete-student" :key="stud.id" @click="$data.student = stud"><i class="fas fa-trash-alt"></i></button> -->
                 </td>
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Student Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <p>{{ stud.get_fullname}}</p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
             </tr>
             </tbody>
         </table>
@@ -152,6 +201,7 @@ export default {
             })
             .then(response => {
                 console.warn(response);
+                // console.log(response);
             });
             await this.getStudents();
             this.student = {};
@@ -195,6 +245,9 @@ export default {
                 console.warn(response);
             });
             await this.getStudents();
+        },
+        async clearList(){
+          this.student = {};
         }
     }
 }
