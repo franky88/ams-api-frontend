@@ -63,7 +63,7 @@
         </div>
       </div>
       <!-- Modal for details -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="student-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -78,13 +78,29 @@
                 <small class="text-muted">Date Register: {{ student.date_register|formatDate }}</small>
                 <hr>
                 <!-- <button type="button" class="btn btn-outline-danger btn-sm" @click="deleteStudent(student)"><i class="fas fa-trash-alt"></i></button> -->
-                <hr>
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="edit-student" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Student Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
                 <div class="card bg-light">
                     <!-- <div class="card-header">
                     Student Initial Details
                     </div> -->
                     <div class="card-body">
-                    <h3 class="card-title">Student Details</h3>
+                    <h3 class="card-title">Edit Students</h3>
                     <hr>
                     <form @submit.prevent="submitForm">
                         <div class="form-group">
@@ -117,7 +133,7 @@
                         </div>
                         <!-- <input type="hidden" id="postId" name="user" v-model="student.user" value=""> -->
                         <button class="btn btn-outline-primary btn-sm">Update</button>
-                        <a class="btn float-right" style="color: red;" @click="deleteStudent(student)"><i class="fas fa-trash-alt"></i></a>
+                        <!-- <a class="btn float-right" style="color: red;" @click="deleteStudent(student)"><i class="fas fa-trash-alt"></i></a> -->
                     </form>
                     </div>
                 </div>
@@ -139,7 +155,7 @@
             <tr>
                 <th>Full Name</th>
                 <th>Parent Contact</th>
-                <th>Actions</th>
+                <th>Settings</th>
             </tr>
             </thead>
             <tbody v-for="student in studentlist" :key="student.id">
@@ -152,10 +168,14 @@
                 </td>
                 <td>{{stud.parent_contact}}</td>
                 <td>
-                <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalCenter" :key="stud.id" @click="$data.student = stud">
-  Details
-</button>
-                <!-- <button class="btn btn-outline-danger btn-sm mx-1" data-toggle="modal" data-target="#delete-student" :key="stud.id" @click="$data.student = stud"><i class="fas fa-trash-alt"></i></button> -->
+                <button class="btn btn-outline-info dropdown-toggle btn-sm float-left" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-cog"></i>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button class="dropdown-item" type="button" data-toggle="modal" data-target="#student-details" :key="stud.id" @click="$data.student = stud">Details</button>
+    <button class="dropdown-item" type="button" data-toggle="modal" data-target="#edit-student" :key="stud.id" @click="$data.student = stud">Edit</button>
+    <button class="dropdown-item" type="button" style="color: red;" @click="deleteStudent(stud)">Delete</button>
+  </div>
                 </td>
             </tr>
             </tbody>
