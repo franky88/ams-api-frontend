@@ -56,9 +56,9 @@
                   </div>
               </div>
             </div>
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -73,31 +73,64 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="row">
-                <div class="col-sm-4">
-                  <div class="" style="background-color: teal; width:100%; height:100%; border-radius: 5%;">
-
-                  </div>
+                <strong>{{ student.get_fullname }}</strong>
+                <br>
+                <small class="text-muted">Date Register: {{ student.date_register|formatDate }}</small>
+                <hr>
+                <!-- <button type="button" class="btn btn-outline-danger btn-sm" @click="deleteStudent(student)"><i class="fas fa-trash-alt"></i></button> -->
+                <hr>
+                <div class="card bg-light">
+                    <!-- <div class="card-header">
+                    Student Initial Details
+                    </div> -->
+                    <div class="card-body">
+                    <h3 class="card-title">Student Details</h3>
+                    <hr>
+                    <form @submit.prevent="submitForm">
+                        <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" placeholder="First Name" v-model="student.first_name" required='required'>
+                        </div>
+                        <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" placeholder="Last Name" v-model="student.last_name" required='required'>
+                        </div>
+                        <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <input type="text" class="form-control" placeholder="Middle Name" v-model="student.middle_name">
+                        </div>
+                        <div class="form-group">
+                        <label for="extensionName">Extension Name</label>
+                        <input type="text" class="form-control" placeholder="Extension Name" v-model="student.extension_name">
+                        </div>
+                        <div class="form-group">
+                        <label for="birthDate">Birth Date</label>
+                        <input type="date" class="form-control" placeholder="Birth Date" v-model="student.birth_date" required='required'>
+                        </div>
+                        <div class="form-group">
+                        <label for="parentContact">Parent Mobile Contact</label>
+                        <input type="text" class="form-control" placeholder="Parent Contact" v-model="student.parent_contact" required='required'>
+                        </div>
+                        <div class="form-group">
+                        <label for="parentEmail">Parent Email Address</label>
+                        <input type="email" class="form-control" placeholder="Parent Email" v-model="student.parent_email">
+                        </div>
+                        <!-- <input type="hidden" id="postId" name="user" v-model="student.user" value=""> -->
+                        <button class="btn btn-outline-primary btn-sm">Update</button>
+                        <a class="btn float-right" style="color: red;" @click="deleteStudent(student)"><i class="fas fa-trash-alt"></i></a>
+                    </form>
+                    </div>
                 </div>
-                <div class="col-sm-8">
-                  <strong>{{ student.get_fullname }}</strong>
-                  <br>
-                  <small class="text-muted">Date Register: {{ student.date_register|formatDate }}</small>
-                  <hr>
-                  <button type="button" class="btn btn-outline-danger btn-sm" @click="deleteStudent(student)"><i class="fas fa-trash-alt"></i></button>
-                </div>
-              </div>
-
             </div>
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     <div class="card">
         <div class="card-body">
-        <h3 class="card-title">Student list | <button type="button" name="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#create-student">Add</button> </h3>
+        <h3 class="card-title">Student list <button type="button" name="button" class="btn btn-outline-primary btn-sm float-right" data-toggle="modal" data-target="#create-student">Add</button></h3>
         <input class="form-control mr-sm-2" v-model="search" type="search" placeholder="Search Student" aria-label="Search">
         <hr>
         <p class="text-muted">Filters | </p>
