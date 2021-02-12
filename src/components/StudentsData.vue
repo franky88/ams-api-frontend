@@ -9,8 +9,6 @@
         <div class="card-body">
         <h3 class="card-title">Create Student Form</h3>
         <hr>
-        <p class="text-muted">Filters</p>
-        <hr>
         <form @submit.prevent="submitForm">
             <div class="form-group">
             <label for="firstName">First Name</label>
@@ -117,6 +115,8 @@
     <div class="card">
         <div class="card-body">
         <h3 class="card-title">Student list</h3>
+        <p class="text-muted">Filters</p>
+        <hr>
         <input class="form-control mr-sm-2" v-model="search" type="search" placeholder="Search Student" aria-label="Search">
         <br>
         <table class="table table-sm table-hover">
