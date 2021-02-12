@@ -230,6 +230,7 @@ export default {
         },
         async createStudent(){
             await this.getStudents();
+            this.student = {};
             Axios.post('https://franky88.pythonanywhere.com/students/?format=json', this.student, {
                 headers: {
                     'Content-Type': 'application/json',
