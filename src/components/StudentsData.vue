@@ -179,7 +179,7 @@ export default {
             }
         },
         async getStudents(){
-            Axios.get('http://franky88.pythonanywhere.com/students/?format=json', {
+            Axios.get('https://franky88.pythonanywhere.com/students/?format=json', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${access_token}`
@@ -193,7 +193,7 @@ export default {
         },
         async createStudent(){
             await this.getStudents();
-            Axios.post('http://franky88.pythonanywhere.com/students/?format=json', this.student, {
+            Axios.post('https://franky88.pythonanywhere.com/students/?format=json', this.student, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${access_token}`
@@ -208,7 +208,7 @@ export default {
         },
         async editStudent() {
             await this.getStudents();
-            Axios.put(`http://franky88.pythonanywhere.com/students/${this.student.id}/`, this.student, {
+            Axios.put(`https://franky88.pythonanywhere.com/students/${this.student.id}/`, this.student, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${access_token}`
@@ -222,7 +222,7 @@ export default {
         },
         async detailsStudent(student) {
             await this.getStudents();
-            Axios.get(`http://franky88.pythonanywhere.com/students/${student.id}/`, {
+            Axios.get(`https://franky88.pythonanywhere.com/students/${student.id}/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${access_token}`
@@ -235,7 +235,7 @@ export default {
         },
         async deleteStudent(student) {
             await this.getStudents();
-            Axios.delete(`http://franky88.pythonanywhere.com/students/${student.id}/`, {
+            Axios.delete(`https://franky88.pythonanywhere.com/students/${student.id}/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${access_token}`
