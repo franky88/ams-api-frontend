@@ -9,6 +9,8 @@
         <div class="card-body">
         <h3 class="card-title">Create Student Form</h3>
         <hr>
+        <p class="text-muted">Filters</p>
+        <hr>
         <form @submit.prevent="submitForm">
             <div class="form-group">
             <label for="firstName">First Name</label>
