@@ -51,7 +51,7 @@
                       </div>
                       <!-- <input type="hidden" id="postId" name="user" v-model="student.user" value=""> -->
                       <button class="btn btn-outline-primary btn-sm">Submit</button>
-                      <a class="btn text-sm-right" style="color: red;" @click="clearList">Clear</a>
+                      <a class="btn float-right" style="color: red;" @click="clearList">Clear</a>
                   </form>
                   </div>
               </div>
