@@ -116,7 +116,6 @@
         <div class="card-body">
         <h3 class="card-title">Student list</h3>
         <input class="form-control mr-sm-2" v-model="search" type="search" placeholder="Search Student" aria-label="Search">
-        <br>
         <hr>
         <p class="text-muted">Filters | </p>
         <table class="table table-sm table-hover">
